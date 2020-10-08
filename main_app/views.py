@@ -17,6 +17,11 @@ def profile_detail(request, profile_id):
     return render(request, 'profile/detail.html', context)
 
 
+def post_detail(request, post_id):
+    post = Post.objects.get(id=post_id)
+    context = {'post': post}
+    return render(request,'post/detail.html', context)
+
 
 # edit and update
 def profile_edit(request, profile_id):
@@ -34,11 +39,6 @@ def profile_edit(request, profile_id):
 
 
 
-
-def post_detail(request, post_id):
-    post = Post.objects.get(id=post_id)
-    context = {'post': post}
-    return render(request,'post/detail.html', context)
 
 
 
