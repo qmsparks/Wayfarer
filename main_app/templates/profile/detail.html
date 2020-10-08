@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Profile Page</h1>
+<p>Name: {{ profile.name }}</p>
+<p>Current City: {{profile.current_city}} </p>
+
+<p>Joined On: {{ profile.date }} </p>
+<a href="{% url 'profile_edit' profile.id %}" class="btn blue">Edit</a>
+
+<tbody>
+{% for post in profile.post_set.all %}
+    <tr>
+        <a href="/post/{{ post.id }}"><td>{{post.title}}</td></a>
+    </tr>
+    {% endfor %}
+</tbody>
+
+
+{% endblock %}
