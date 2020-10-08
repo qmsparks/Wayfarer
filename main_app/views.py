@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
+from .models import Profile
 
 # Create your views here.
 
@@ -8,7 +9,11 @@ def home(request):
     return render(request, 'home.html')
 
 def profile_page(request):
-    return render(request, 'profile/profile_page.html')
+    profile = Profile.objects.get(id = profile_id)
+    context = {'profile': profile}
+    return render(request, 'profile/profile_page.html', context)
 
 def post_detail(request):
-    return render(request,'post/detail.html')
+    post = Post.objects.get(id = post_id)
+    context = {'post': post}
+    return render(request,'post/detail.html', context)
