@@ -8,5 +8,13 @@
 <p>Joined On: {{ profile.date }} </p>
 <h2> Edit {{ profile.name }}<h2>
 
+<tbody>
+{% for post in profile.post_set.all %}
+    <tr>
+        <td>{{post.title}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
 
 {% endblock %}
