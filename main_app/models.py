@@ -11,7 +11,7 @@ class City(models.Model):
     country_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return self.city_name
 
 class Profile(models.Model):
     name = models.CharField(max_length=20)
@@ -33,7 +33,7 @@ class Post(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.title
 
 
 

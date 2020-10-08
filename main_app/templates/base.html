@@ -1,4 +1,3 @@
-{% extends 'navbar.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -20,17 +19,17 @@
             <p>Wayfarer</p>
             </div>
             <div class="col-sm-4">
-                {% block navbar %}                   
-
-
-                {% endblock navbar%}  
+                {% block modal %}
+                
+                {% endblock %}          
             </div>    
         </div>
     </div>
     <main class="container">
         {% block content %}
 
-        {% endblock content%}
+        {% endblock %}
       </main>
+    
 </body>
 </html>
