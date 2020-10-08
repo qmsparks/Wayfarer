@@ -1,1 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+
 <h1>Profile Page</h1>
+<p>Name: {{ profile.name }}</p>
+<p>Current City: {{profile.current_city}} </p>
+
+<p>Joined On: {{ profile.date }} </p>
+
+{% endblock %}
