@@ -13,6 +13,16 @@ class City(models.Model):
     def __str__(self):
         return self.name
 
+class Profile(models.Model):
+    name = models.CharField(max_length=20)
+    current_city = models.CharField(max_length=50)
+    date = models.DateField('joined on')
+    #profile_Main_Img = models.ImageField(upload_to='images/') 
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -25,16 +35,6 @@ class Post(models.Model):
     def __str__(self):
         return self.name
 
-
-class Profile(models.Model):
-    name = models.CharField(max_length=20)
-    current_city = models.CharField(max_length=50)
-    date = models.DateField('joined on')
-    #profile_Main_Img = models.ImageField(upload_to='images/') 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.name
 
 
 class Meta:
