@@ -1,3 +1,4 @@
+{% extends 'navbar.html' %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +13,24 @@
     <title>Welfarer</title>
 </head>
 <body>
-    <nav> 
-    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+            <p>Wayfarer</p>
+            </div>
+            <div class="col-sm-4">
+                {% block navbar %}                   
+
+
+                {% endblock navbar%}  
+            </div>    
+        </div>
+    </div>
     <main class="container">
         {% block content %}
 
-        {% endblock %}
+        {% endblock content%}
       </main>
 </body>
 </html>
