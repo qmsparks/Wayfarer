@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 #Django decorate. Necessary for @login_required
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .forms import Profile_Form, City_Form, Post_Form
+# Create your views here.
 
 # Home view
 def home(request):
@@ -16,6 +18,7 @@ def home(request):
 def register(request):
     #from django-auth WC-SEI-817
 
+    
     #Logic that handles data from request.method "POST"
     if request.method == "POST":
         first_name = request.POST['first_name']
@@ -75,13 +78,14 @@ def logout(request):
     auth.logout(request)
     #this tells where the log redirects
     return redirect('/')
-
+  
+# show
 @login_required
-def profile_page(request, profile_id):
-
+def profile_detail(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
     context = {'profile': profile}
-    return render(request, 'profile/profile_page.html', context)
+    return render(request, 'profile/detail.html', context)
+
 
 @login_required
 def post_detail(request, post_id):
@@ -89,3 +93,16 @@ def post_detail(request, post_id):
     context = {'post': post}
     return render(request,'post/detail.html', context)
 
+
+# edit and update
+def profile_edit(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    if request.method == 'POST':
+        profile_form = Profile_Form(request.POST, instance=profile)
+        if profile_form.is_valid():
+            profile_form.save()
+            return redirect('profile_detail', profile_id=profile_id)
+    else:
+        profile_form = Profile_Form(instance=profile)
+    context = {'profile': profile, 'profile_form': profile_form}
+    return render(request, 'profile/edit.html', context)
