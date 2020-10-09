@@ -121,7 +121,7 @@ def city_detail(request, city_id):
     return render(request, 'city/detail.html', context)
 
 def city_edit(request, city_id):
-    city = City.objects.get(id=profile_id)
+    city = City.objects.get(id=city_id)
     if request.method == 'POST':
         city_form = City_Form(request.POST, instance=city)
         if city_form.is_valid():
