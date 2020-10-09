@@ -8,7 +8,7 @@
 <form action="{% url 'profile_edit' profile.id %}" method="POST">
   {% csrf_token %}
   {{ profile_form.as_p }}
-  <input class="btn" type="submit" value="Update {{profile.name}}">
+  <input class="btn btn-outline-light editbutton" type="submit" value="Update {{profile.name}}">
 </form>
 
 {% endblock %}
