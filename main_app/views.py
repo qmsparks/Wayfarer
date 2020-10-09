@@ -46,6 +46,13 @@ def register(request):
                         last_name=last_name
                     )
                     user.save()
+
+                    profile = Profile(
+                        name = f"{user.first_name} {user.last_name}",
+                        user = user,
+                        current_city = request.POST["current_city"],
+                    )
+                    profile.save()
                     # If registration is successful, following line will print
                     print('Registration is successful. Data is saved.')
                     return redirect('/') #return to homepage after registration
@@ -66,7 +73,7 @@ def login(request):
             auth.login(request, user)
             #redirect back to profile page after successful login
             print('Login is successful!')
-            return redirect('/')
+            return redirect('profile_detail', user.id)
         else:
             context = {'error': 'Wrong account credentials.'}
             messages.info(request, 'Message Info: Wrong account credentials')
@@ -82,8 +89,8 @@ def logout(request):
 # show
 @login_required
 def profile_detail(request, profile_id):
-    profile = Profile.objects.get(id=profile_id)
-    context = {'profile': profile}
+    user = User.objects.get(id=profile_id)
+    context = {'user': user}
     return render(request, 'profile/detail.html', context)
 
 
@@ -101,8 +108,26 @@ def profile_edit(request, profile_id):
         profile_form = Profile_Form(request.POST, instance=profile)
         if profile_form.is_valid():
             profile_form.save()
-            return redirect('profile_detail', profile_id=profile_id)
+            return redirect('profile_detail', profile_id=profile.user.id)
     else:
         profile_form = Profile_Form(instance=profile)
     context = {'profile': profile, 'profile_form': profile_form}
     return render(request, 'profile/edit.html', context)
+
+#SECTION City
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {'city': city}
+    return render(request, 'city/detail.html', context)
+
+def city_edit(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        city_form = City_Form(request.POST, instance=city)
+        if city_form.is_valid():
+            city_form.save()
+            return redirect('city_detail', city_id=city.user.id)
+    else:
+        city_form = City_Form(instance=city)
+    context = {'city': city, 'city_form': city_form}
+    return render(request, 'city/edit.html', context)

@@ -1,0 +1,23 @@
+body {
+    background-color: #E0EEEC;
+}
+
+.navcss {
+    background-color: #135952;
+}
+
+.navitext {
+    color: red;
+}
+
+.navbutton {
+    background-color: #FC9436;
+}
+
+.editbutton {
+    background-color: #72758F;
+}
+
+.cardbg {
+    backdrop-filter: blur(6px);
+}

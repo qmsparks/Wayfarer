@@ -4,27 +4,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'styles/main.css' %}" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">  
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" >
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous" defer></script>
-    <title>Welfarer</title>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous" defer></script>
+    <title>Wayfarer</title>
 </head>
 <body>
+    
+<nav class="navbar navbar-expand-sm navbar-light navcss">
+  
+    <a class="navbar-brand" href="/" style="color: #E0EEEC;">Wayfarer</a>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-8">
-            <p>Wayfarer</p>
-            </div>
-            <div class="col-sm-4">
-                {% block modal %}
-                
-                {% endblock %}          
-            </div>    
-        </div>
+    <!-- SECTION User/Sign in/ Sign Out -->
+    <div class="collapse navbar-collapse">  
+      <ul class="navbar-nav ml-auto">
+
+          {% block modal %}
+          {% if user.is_authenticated %}
+          <li class="nav-item active">
+            <p class="nav-link" style="color: #E0EEEC;">Welcome, {{user.first_name}}</p>
+          </li>
+          <li class="nav-item inactive">
+            <a href="{% url 'logout' %}" class="nav-link"><input type="submit" class="navbutton" value="Log Out"></a>
+          </li>   
+          {% else %}
+          <li class="nav-item active">
+            <input type="button" class="nav-link navbutton" data-toggle="modal" data-target="#signupModal" value="Sign Up" style="color: #E0EEEC;">
+          </li>  
+          <li class="nav-item active">  
+            <input type="button" class="nav-link navbutton"data-toggle="modal" data-target="#loginModal" value="Log In" style="color: #E0EEEC;"> 
+          </li> 
+          {%endif%}          
+
+          <!-- SECTION Modal. Note: does not need to be positioned  -->
+          <!-- Sign Up-->
+          <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="SignupModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" >Sign up</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      {% if error %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                        <script>alert("{{error}}")</script>
+                      {% endif %}
+                      <form method="POST" action={% url 'register'%}>
+                          {% csrf_token %}
+                          <div class="modal-body">
+                              <div class="row">
+                                <div class="col">
+                                  <p>
+                                    <label for="first_name">First Name: </label>
+                                    <input type="text" class="form-control" name="first_name"  maxlength="25" minlength="2" placeholder="Enter Your First Name" required >
+                                  </p>
+                                </div>
+                                <div class="col">  
+                                  <p>
+                                    <label for="last_name">Last Name: </label>
+                                    <input type="text" class="form-control" name="last_name"  maxlength="25" minlength="2" placeholder="Enter Your Last Name" required>
+                                  </p>
+                                </div>
+                              </div>    
+                              <p>
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email"  maxlength="25" minlength="2" placeholder="name@email.com" required>
+                              </p>
+                              <p>
+                                <label for="username">Username:</label>
+                                <input type="text" class="form-control" name="username"  maxlength="25" minlength="2" placeholder="Enter Your User Name" required>
+                              </p>
+                              <p>
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" name="password"  maxlength="25" minlength="4" placeholder="Enter Your Password. Max 25 characters. Minimum of 4 characters is required."required>
+                              </p>
+                              <p>
+                                <label for="password2">Confirm Password:</label>
+                                <input type="password" class="form-control" name="password2"  maxlength="25" minlength="4" placeholder="Re-Enter Your Password" required>
+                              </p>
+
+                              <p>
+                                <label for="current_city">Current City: </label>
+                                <input type="text" class="form-control" name="current_city"  maxlength="25" required>
+                              </p>
+
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  
+                                  <input type="submit" class="btn btn-primary" value="Sign Up">
+                                  <input type="hidden" name="next" value="{{ next }}">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+          <!-- Sign in/Log in-->
+          <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+
+              <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <h5 class="modal-title" >Log In Page</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      {% if error %}
+                        <div class="alert alert-danger" role="alert">{{error}}</div>
+                        <script>alert("{{error}}")</script>
+                      {% endif %}
+                      <form method="POST" action="{%url 'login' %}">
+                          {% csrf_token %}
+                          <div class="modal-body">
+                              <p>
+                                <label for="username">Username</label>
+                                <input type="text" name="username" class="form-control" maxlength="25" minlength="2" required>
+                              </p>
+                              <p>
+                                <label for="password">Password</label>
+                                <input type="password" name="password" class="form-control" maxlength="25" minlength="4" required>
+                              </p>
+                              <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  
+                                  <input type="submit" class="btn btn-primary" value="Login">
+                                  <input type="hidden" name="next" value="{{ next }}">
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>                    
+          {% endblock %}     
+      </ul>
     </div>
+  
+</nav>
     <main class="container">
         {% block content %}
 
