@@ -1,0 +1,40 @@
+{% autoescape off %}
+{% block navbar %}
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+                Sign In
+                </button>
+                
+
+                <!-- Modal -->
+                <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" >Log In</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <form action="post" action={% url 'login'%}>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label for="usernameLabel">Username</label>
+                                        <input type="email" class="form-control" placeholder="Please Enter Your Username">
+                                        <label for="passwordLabel">Password</label>
+                                        <input type="password" class="form-control" placeholder="Please Enter Your Password">
+                                    </div>
+                                
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" value="login">Log In</button>
+                                        <input type="hidden" name="next" value="{{ next }}">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+{% endblock %}
+{% endautoescape %}
