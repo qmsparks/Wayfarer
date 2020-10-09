@@ -113,3 +113,21 @@ def profile_edit(request, profile_id):
         profile_form = Profile_Form(instance=profile)
     context = {'profile': profile, 'profile_form': profile_form}
     return render(request, 'profile/edit.html', context)
+
+#SECTION City
+def city_detail(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {'city': city}
+    return render(request, 'city/detail.html', context)
+
+def city_edit(request, city_id):
+    city = City.objects.get(id=profile_id)
+    if request.method == 'POST':
+        city_form = City_Form(request.POST, instance=city)
+        if city_form.is_valid():
+            city_form.save()
+            return redirect('city_detail', city_id=city.user.id)
+    else:
+        city_form = City_Form(instance=city)
+    context = {'city': city, 'city_form': city_form}
+    return render(request, 'city/edit.html', context)
