@@ -116,8 +116,9 @@ def profile_edit(request, profile_id):
 
 #SECTION City
 def city_detail(request, city_id):
-    city = City.objects.get(id=city_id)
-    context = {'city': city}
+    city = City.objects.get(id =city_id)
+    post = Post.objects.filter(city_id = city_id)
+    context = {'city': city, 'posts': post,}
     return render(request, 'city/detail.html', context)
 
 def city_edit(request, city_id):

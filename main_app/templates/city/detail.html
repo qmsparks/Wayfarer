@@ -1,5 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>{{city.city_name}}</h1>
+<img src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" alt="">
 
+
+<table class="striped">
+    <thead>
+      <tr><th>Date</th><th>Meal</th></tr>
+    </thead>
+    <tbody>
+      {% for post in city.post_set.all %}
+        <tr>
+          <td><a href="/post/{{ post.id }}">{{post.title}}</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+<h1>{{posts.title}}</h1>
+<h1>WOrks</h1>
 {% endblock %}
