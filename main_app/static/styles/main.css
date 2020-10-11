@@ -1,3 +1,9 @@
+/* font-family: 'Arima Madurai', cursive;
+font-family: 'Bellota Text', cursive;
+font-family: 'Comfortaa', cursive;
+font-family: 'Sansita Swashed', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;200;300;400;500;700;800;900&family=Bellota+Text:wght@300;700&family=Comfortaa:wght@300;400&family=Sansita+Swashed:wght@500;600&display=swap');
 body {
     background-color: #E0EEEC;
 }
@@ -11,11 +17,18 @@ body {
 }
 
 .navbutton {
-    background-color: #FC9436;
+    padding: 15px;
 }
 
-.editbutton {
-    background-color: #72758F;
+.mainbutton {
+    color: white;
+}
+
+.home-paragraph {
+    text-align: center;
+    text-align-last: center;
+    font-family: 'Bellota Text', cursive;
+    font-weight: 700;
 }
 
 .cardbg {
