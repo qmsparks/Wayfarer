@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import Profile_Form, City_Form, Post_Form
+import copy
 # Create your views here.
 
 # Home view
@@ -129,8 +130,11 @@ def profile_edit(request, profile_id):
 #SECTION City
 def city_detail(request, city_id):
     city = City.objects.get(id =city_id)
-    post = Post.objects.filter(city_id = city_id)
-    context = {'city': city, 'posts': post,}
+    post_form = Post_Form()
+    context = {
+        'city': city,
+        'post_form': post_form
+    }
     return render(request, 'city/detail.html', context)
 
 def city_edit(request, city_id):
@@ -144,3 +148,24 @@ def city_edit(request, city_id):
         city_form = City_Form(instance=city)
     context = {'city': city, 'city_form': city_form}
     return render(request, 'city/edit.html', context)
+
+@login_required
+def add_post(request, city_id):
+    city = City.objects.get(id=city_id)
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST)
+        if post_form.is_valid():
+            user_id = request.user.id
+            profile = Profile.objects.get(user=user_id)
+            new_post = Post(
+                title = request.POST['title'],
+                author = request.POST['author'],
+                content = request.POST['content'],
+                city = city,
+                profile = profile
+            )
+            new_post.save()
+            return redirect('city_detail', city_id=city_id)
+        else:
+            context = {'formInvalid': 'Form not properly filled out please try again.'}
+            return render(request, 'city/detail.html', context)

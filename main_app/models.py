@@ -27,7 +27,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     content = models.TextField(max_length=250)
-    #date = models.DateField('created date')
+    date = models.DateField('created date', default= datetime.now)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
 
@@ -36,5 +36,5 @@ class Post(models.Model):
 
 
 
-class Meta:
-    ordering = ['-date']
+    class Meta:
+        ordering = ['-date']
