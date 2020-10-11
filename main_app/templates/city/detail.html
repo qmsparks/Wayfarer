@@ -4,10 +4,43 @@
 <h1>{{city.city_name}}</h1>
 <img src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" alt="">
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewCity">
+  Add New City
+</button>
+{% if formInvalid %}
+  <div class="alert alert-danger" role="alert">{{formInvalid}}</div>
+{% endif %}
+
+<!-- Modal -->
+<div class="modal fade" id="AddNewCity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New City</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="{% url 'add_post' city.id %}" method="POST">
+      <div class="modal-body">
+        {% csrf_token %}
+        {{post_form.as_p}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <input type="submit" class="btn btn-primary" value="Add Post">
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 
 <table class="striped">
     <thead>
-      <tr><th>Date</th><th></th></tr>
+      <tr><th>Reviews</th><th></th></tr>
     </thead>
     <tbody>
       {% for post in city.post_set.all %}
@@ -15,6 +48,10 @@
           <td><a href="/post/{{ post.id }}">{{post.title}}</a></td>
         </tr>
       {% endfor %}
+
+
+
+      
     </tbody>
   </table>
 
