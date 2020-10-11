@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<script src="../../static/scripts/app.js"></script>
 <h1>{{city.city_name}}</h1>
 <img src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" alt="">
 
@@ -18,4 +19,5 @@
     </tbody>
   </table>
 
+  <button class="button" id="add_post">Add post</button>
 {% endblock %}

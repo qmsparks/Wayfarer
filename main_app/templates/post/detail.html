@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <h1>Title: {{ post.title }}</h1>
 <p>Author: {{post.author}} </p>
 
@@ -10,4 +9,8 @@
 <div class="card-action">
     <a href="{% url 'post_edit' post.id %}" class="btn btn-outline-light editbutton">Edit</a>
 </div>
+<div id="delete_div">
+<button id="delete">DELETE</button>
+</div>
+<script src="../../static/scripts/app.js"></script>
 {% endblock %}
