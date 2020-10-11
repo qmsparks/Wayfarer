@@ -100,6 +100,18 @@ def post_detail(request, post_id):
     context = {'post': post}
     return render(request,'post/detail.html', context)
 
+@login_required
+def post_edit(request, post_id):
+    post = Post.objects.get(id=post_id)
+    if request.method == 'POST':
+        post_form = Post_Form(request.POST, instance=post)
+        if post_form.is_valid():
+            post_form.save()
+            return redirect('post_detail', post_id=post_id)
+    else:
+        post_form = Post_Form(instance=post)
+    context = {'post': post, 'post_form': post_form}
+    return render(request, 'post/edit.html', context)
 
 # edit and update
 def profile_edit(request, profile_id):
@@ -116,8 +128,9 @@ def profile_edit(request, profile_id):
 
 #SECTION City
 def city_detail(request, city_id):
-    city = City.objects.get(id=city_id)
-    context = {'city': city}
+    city = City.objects.get(id =city_id)
+    post = Post.objects.filter(city_id = city_id)
+    context = {'city': city, 'posts': post,}
     return render(request, 'city/detail.html', context)
 
 def city_edit(request, city_id):

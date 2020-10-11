@@ -7,5 +7,7 @@
 
 <p>Content: {{ post.content }} </p>
 
-
+<div class="card-action">
+    <a href="{% url 'post_edit' post.id %}" class="btn btn-outline-light editbutton">Edit</a>
+</div>
 {% endblock %}
