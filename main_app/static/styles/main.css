@@ -1,3 +1,7 @@
+/* font-family: 'Bellota Text', cursive;
+font-family: 'Comfortaa', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300&family=Comfortaa:wght@400;500&display=swap');
 body {
     background-color: #E0EEEC;
 }
@@ -11,7 +15,11 @@ body {
 }
 
 .navbutton {
-    background-color: #FC9436;
+    padding: 15px;
+}
+
+.mainbutton {
+    color: white;
 }
 
 .editbutton {
