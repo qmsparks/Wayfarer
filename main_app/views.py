@@ -11,10 +11,10 @@ from django.contrib import messages
 from .forms import Profile_Form, City_Form, Post_Form
 import copy
 # Create your views here.
-
 # Home view
 def home(request):
     return render(request, 'home.html')
+
 #Register Form
 def register(request):
     #from django-auth WC-SEI-817
@@ -131,6 +131,7 @@ def profile_edit(request, profile_id):
         profile_form = Profile_Form(instance=profile)
     context = {'profile': profile, 'profile_form': profile_form}
     return render(request, 'profile/edit.html', context)
+
 
 #SECTION City
 def city_detail(request, city_id):
