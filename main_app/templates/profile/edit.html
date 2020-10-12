@@ -14,7 +14,7 @@
                     </h1>
 
                     <!--SECTION Update Form w/in card -->
-                    <form action="{% url 'profile_edit' profile.id %}" method="POST">
+                    <form action="{% url 'profile_edit' profile.id %}" method="POST" class="profile-body">
                         {% csrf_token %}
                         {{ profile_form.as_p }}
 
@@ -26,6 +26,7 @@
 
                 </div>
             </div>
+
         </div>
     </div>
 </div>
