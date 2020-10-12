@@ -3,74 +3,69 @@
 {% block content %}
 <div class="row">
 <!-- SECTION Sidebar -->
-  <div class="col md-4">
+  <div class="col-md-4">
     <!-- title -->
     <div class="row">
       <h1>Cities</h1>
     </div>
-
     <!-- city -->
-    <div class="row">
-      <div class="col">
+    <!-- NOTE to team: our below row needs to be refactor into a logic that spits multiple "rows" that contains the content below-->
+    <!-- Start If logic here-->
+      <div class="row">
         <div class="media">
           <img class="mr-3" src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" style="width:100px;" alt="city thumbnail">
           <div class="media-body">
-            <h5 class="mt-0">London</h5> 
-        </div>
+            <h5 class="mt-0">London</h5>
+          </div>
+        </div>        
+      </div>
+    <!-- Endif logic here (in above line)-->
+     
+  </div>
+<!-- SECTION Main content -->
+  <div class="col-md-7">
+      <!-- City description-->   
+      <div class="row">
         <div class="media">
-          <img class="mr-3" src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" style="width:100px;" alt="city thumbnail">
+          <script src="../../static/scripts/app.js"></script>
+          <img class="mr-3" src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg"  alt="city thumbnail" style="width: 200px;">
           <div class="media-body">
-            <h5 class="mt-0">Sydney</h5> 
-        </div>
-        <div class="media">
-          <img class="mr-3" src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" style="width:100px;" alt="city thumbnail">
-          <div class="media-body">
-            <h5 class="mt-0">San Francisco</h5> 
+            <h2 class="mt-0">{{city.city_name}}</h2>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-<!-- SECTION City Description -->
-  <div class="col md-7">
-
+      <!-- User posts title -->
+      <div class="row">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewCity">
+          Add New Review
+        </button>
+      </div>
+      <!-- User posts -->
+      <div class="row">
+        <table class="striped">
+          <thead>
+            <tr><th>Reviews</th><th></th></tr>
+          </thead>
+          <tbody>
+            {% for post in city.post_set.all %}
+              <tr>
+                <td><a href="/post/{{ post.id }}">{{post.title}}</a></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      <div>
   </div>
 </div>
-<script src="../../static/scripts/app.js"></script>
-<h1>{{city.city_name}}</h1>
-<img src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg" alt="">
 
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewCity">
-  Add New Review
-</button>
+
 {% if formInvalid %}
   <div class="alert alert-danger" role="alert">{{formInvalid}}</div>
 {% endif %}
 
-<!-- Modal -->
 
-
-<!-- SECTION User posts-->
-<table class="striped">
-    <thead>
-      <tr><th>Reviews</th><th></th></tr>
-    </thead>
-    <tbody>
-      {% for post in city.post_set.all %}
-        <tr>
-          <td><a href="/post/{{ post.id }}">{{post.title}}</a></td>
-        </tr>
-      {% endfor %}
-    </tbody>
-</table>
-
-{% comment %} <ul>
-  {% for city in city %}
-  <li>
-  {{city.city_name}}
-  </li>
-  {% endfor %}
-</ul> {% endcomment %}
+<!-- SECTION Modal-->
 <div class="modal fade" id="AddNewCity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
