@@ -143,10 +143,12 @@ def profile_edit(request, profile_id):
 #SECTION City
 def city_detail(request, city_id):
     city = City.objects.get(id =city_id)
+    cities = City.objects.all();
     post_form = Post_Form()
     context = {
         'city': city,
-        'post_form': post_form
+        'post_form': post_form,
+        'cities': cities,
     }
     return render(request, 'city/detail.html', context)
 
