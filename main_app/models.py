@@ -9,6 +9,7 @@ from datetime import datetime
 class City(models.Model):
     city_name = models.CharField(max_length=50)
     country_name = models.CharField(max_length=50)
+    image_link = models.CharField(max_length=5000)
 
     def __str__(self):
         return self.city_name
