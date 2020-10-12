@@ -23,7 +23,7 @@
 
                 <!--SECTION  Edit Button w/in card -->
                 <div class="card-action" style="font-family: 'Arima Madurai', cursive; font-weight: 700;">
-                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn btn-light btn-sm" style="background-color: #135952; color: white;">
+                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn btn-light btn-sm" style="background-color: #135952; color: #E0EEEC;">
                         Edit Account
                     </a>
                 </div>
@@ -31,7 +31,7 @@
                 <!--SECTION  Posts w/in card --> 
                 <tbody>
                     <br>
-                    <h4 style="font-family: 'Arima Madurai', cursive;""> 
+                    <h4 style="font-family: 'Arima Madurai', cursive;> 
                         Your Posts:
                     </h4>
                     {% for post in user.profile.post_set.all %}
