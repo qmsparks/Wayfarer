@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/<int:profile_id>/edit/', views.profile_edit, name='profile_edit'),
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),
     path('post/<int:post_id>/edit/', views.post_edit, name='post_edit'),
+    path('post/<int:post_id>/delete/', views.post_delete, name='post_delete'),
     path('city/<int:city_id>/', views.city_detail, name='city_detail'),
     path('city/<int:city_id>/edit/', views.city_edit, name='city_edit'),
     path('city/<int:city_id>/add_post/', views.add_post, name='add_post')
