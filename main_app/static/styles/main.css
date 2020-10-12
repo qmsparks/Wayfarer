@@ -5,30 +5,30 @@ font-family: 'Sansita Swashed', cursive; */
 
 @import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;200;300;400;500;700;800;900&family=Bellota+Text:wght@300;700&family=Comfortaa:wght@300;400&family=Sansita+Swashed:wght@500;600&display=swap");
 body {
-    background-color: #e0eeec;
+  background-color: #e0eeec;
 }
 
 .navcss {
-    background-color: #135952;
+  background-color: #135952;
 }
 
 .navitext {
-    color: red;
+  color: red;
 }
 
 .navbutton {
-    padding: 15px;
+  padding: 15px;
 }
 
 .mainbutton {
-    color: white;
+  color: white;
 }
 
 .home-paragraph {
-    text-align: center;
-    text-align-last: center;
-    font-family: "Bellota Text", cursive;
-    font-weight: 700;
+  text-align: center;
+  text-align-last: center;
+  font-family: "Bellota Text", cursive;
+  font-weight: 700;
 }
 
 .home-carousel-item {
@@ -46,12 +46,12 @@ body {
     padding: 5px 40px 1px;
     border-radius: 15px;
 }
-
 .profile-body {
-    font-family: 'Arima Madurai', cursive;
-    font-weight: 700;
+  font-family: 'Arima Madurai', cursive;
+  font-weight: 700;
 }
 
+
 .cardbg {
-    backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
 }
