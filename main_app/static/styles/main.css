@@ -3,14 +3,6 @@ font-family: 'Bellota Text', cursive;
 font-family: 'Comfortaa', cursive;
 font-family: 'Sansita Swashed', cursive; */
 
-.bi::before {
-    display: inline-block;
-    content: "";
-    background-image: url("data:image/svg+xml,<svg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' clip-rule='evenodd'/></svg>");
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;200;300;400;500;700;800;900&family=Bellota+Text:wght@300;700&family=Comfortaa:wght@300;400&family=Sansita+Swashed:wght@500;600&display=swap");
 body {
     background-color: #e0eeec;
