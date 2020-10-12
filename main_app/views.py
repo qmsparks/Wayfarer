@@ -116,8 +116,10 @@ def post_edit(request, post_id):
 
 # delete
 def post_delete(request, post_id):
+    post = Post.objects.get(id=post_id)
+    city = post.city_id
     Post.objects.get(id=post_id).delete()
-    return redirect("home")
+    return redirect('city_detail', city_id = city)
 
 # edit and update
 def profile_edit(request, profile_id):
