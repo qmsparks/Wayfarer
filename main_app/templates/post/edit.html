@@ -1,12 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Edit {{ post.title }}</h1>
 
-<form action="{% url 'post_edit' post.id %}" method="POST">
-  {% csrf_token %}
-  {{ post_form.as_p }}
-  <input class="btn btn-outline-light editbutton" type="submit" value="Update {{post.title}}">
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col" style="color: #135952;">
+
+            <!--SECTION Edit Post Card -->
+            <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                <div class="card-body profile-body">
+                    <h1>
+                        Edit: {{ post.title }}
+                    </h1>
+
+                    <!--SECTION Post Edit Button-->
+                    <form action="{% url 'post_edit' post.id %}" method="POST">
+                        {% csrf_token %}
+                        {{ post_form.as_p }}
+                        <input class="btn btn-light btn-sm editbutton" type="submit" value="Update {{post.title}}" style="background-color: #135952; color: #E0EEEC;">
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 
 {% endblock %}
