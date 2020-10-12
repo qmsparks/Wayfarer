@@ -6,32 +6,41 @@
     <div class="row">
         <div class="col" style="color: #135952;">
 
-            {% comment %} Profile Card {% endcomment %}
+            <!--SECTION Profile Card -->
             <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
                 <div class="card-body">
-                    <h1 class="card-titile  profile-body">Hi there, {{ user.profile.name }}!</h1>
-                    <p class="profile-body">You have set your current city as: {{user.profile.current_city}} </p>
-
-                    <p class="profile-body">Your joined date is: {{ user.profile.date }} </p>
+                    <h1 class="card-titile  profile-body">
+                        Hi there, {{ user.profile.name }}!
+                    </h1>
+                    <p class="profile-body">
+                        You have set your current city as: {{user.profile.current_city}} 
+                    </p>
+                    <p class="profile-body">
+                        Your joined date is: {{ user.profile.date }} 
+                    </p>
                 </div>
 
-                {% comment %} Edit Button w/in card {% endcomment %}
+                <!--SECTION  Edit Button w/in card -->
                 <div class="card-action profile-body">
-                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn">Edit Account</a>
+                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn btn-outline-secondary">
+                        Edit Account
+                    </a>
                 </div>
 
-                {% comment %} Posts w/in card {% endcomment %}
+                <!--SECTION  Posts w/in card --> 
                 <tbody>
                     {% for post in user.profile.post_set.all %}
-                    <tr>
-                        <a href="/post/{{ post.id }}" class="profile-body"><td>{{post.title}}</td></a>
-                    </tr>
+                        <tr>
+                            <a href="/post/{{ post.id }}" class="profile-body btn-light">
+                                <td>{{post.title}}</td>
+                            </a>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </div>
+
         </div>
     </div>
 </div>
-
 
 {% endblock %}
