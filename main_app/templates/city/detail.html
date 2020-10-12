@@ -9,20 +9,17 @@
       <h1>Cities</h1>
     </div>
     <!-- city -->
-    <!-- NOTE to team: our below row needs to be refactor into a logic that spits multiple "rows" that contains the content below-->
-    <!-- Start If logic here-->
     {% for city in cities %}
       <div class="row">
         <div class="media">
           <img class="mr-3" src="{{city.image_link}}" style="width:100px;" alt="city thumbnail">
           <div class="media-body">
-            <a href="{% url 'city_detail' city.id%}"><h5 class="mt-0">{{city.city_name}}</h5></a>
+            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-slant bttn-lg bttn-warning bttn-no-outline">{{city.city_name}}</button></a>
           </div>
         </div>        
       </div>
     {% endfor %}
-    <!-- Endif logic here (in above line)-->
-     
+
   </div>
 <!-- SECTION Main content (Ciy description and User posts) -->
   <div class="col-md-7">
@@ -30,7 +27,7 @@
       <div class="row">
         <div class="media">
           <script src="../../static/scripts/app.js"></script>
-          <img class="mr-3" src="https://www.pandotrip.com/wp-content/uploads/2014/12/Top-Winter-Cities-NYC-Photo-by-Monica-L-Shulman-740x490.jpg"  alt="city thumbnail" style="width: 200px;">
+          <img class="mr-3" src="{{city.image_link}}"  alt="city thumbnail" style="width: 200px;">
           <div class="media-body">
             <h2 class="mt-0">{{city.city_name}}</h2>
           </div>
@@ -38,8 +35,8 @@
       </div>
       <!-- User posts title -->
       <div class="row">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#AddNewCity">
-          Add New Review
+        <button type="button" class="bttn-pill bttn-sm bttn-warning" data-toggle="modal" data-target="#AddNewCity">
+          Add <i class="fa fa-plus-circle"></i>
         </button>
       </div>
       <!-- User posts -->
