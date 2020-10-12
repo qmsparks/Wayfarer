@@ -2,12 +2,37 @@
 {% block content %}
 
 
-<h1>Title: {{ post.title }}</h1>
-<p>Author: {{post.author}} </p>
+<div class="container">
+    <div class="row">
+        <div class="col" style="color: #135952;">
 
-<p>Content: {{ post.content }} </p>
+            <!--SECTION Post Card -->
+            <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                <div class="card-body profile-body">
+                    <h1 class="card-title">
+                        Title: {{ post.title }}
+                    </h1>
+                    <p>Author: 
+                        <br>
+                        {{post.author}} 
+                    </p>
+                    <p>Content: 
+                        <br>
+                        {{ post.content }} 
+                    </p>
 
-<div class="card-action">
-    <a href="{% url 'post_edit' post.id %}" class="btn btn-outline-light editbutton">Edit</a>
+                    <!--SECTION Post Edit Button-->
+                    <div class="card-action">
+                        <a href="{% url 'post_edit' post.id %}" class="btn btn-light btn-sm" style="background-color: #135952; color: #E0EEEC;">
+                            Edit Post
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
+
 {% endblock %}
