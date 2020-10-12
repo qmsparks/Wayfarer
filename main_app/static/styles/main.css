@@ -32,15 +32,10 @@ body {
 }
 
 .profile-body {
-  font-family: "Bellota Text", cursive;
+  font-family: 'Arima Madurai', cursive;
   font-weight: 700;
 }
 
-#btn:hover {
-    background-color: var(--highlight);
-    color: #333;
-    
-  }
 
 .cardbg {
   backdrop-filter: blur(6px);
