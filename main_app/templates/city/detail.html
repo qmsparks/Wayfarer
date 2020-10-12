@@ -11,14 +11,16 @@
     <!-- city -->
     <!-- NOTE to team: our below row needs to be refactor into a logic that spits multiple "rows" that contains the content below-->
     <!-- Start If logic here-->
+    {% for city in cities %}
       <div class="row">
         <div class="media">
           <img class="mr-3" src="{{city.image_link}}" style="width:100px;" alt="city thumbnail">
           <div class="media-body">
-            <h5 class="mt-0">London</h5>
+            <a href="{% url 'city_detail' city.id%}"><h5 class="mt-0">{{city.city_name}}</h5></a>
           </div>
         </div>        
       </div>
+    {% endfor %}
     <!-- Endif logic here (in above line)-->
      
   </div>
