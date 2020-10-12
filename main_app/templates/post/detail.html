@@ -12,5 +12,8 @@
 <div id="delete_div">
 <button id="delete">DELETE</button>
 </div>
+<form action="{% url 'post_delete' post.id %}" id="form" method="POST">
+
+</form>
 <script src="../../static/scripts/app.js"></script>
 {% endblock %}

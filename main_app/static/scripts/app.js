@@ -14,12 +14,12 @@ console.log($delete)
 
 const remove = function(){
     const $popup = $(`<h1 id = popup> Are you sure?</h1>`)
-    const $yes = $('<button id = yes> Yes </button>')
+    const $yes = $('<input class="btn btn-outline-dark deletebutton" type="submit" value="Yes">')
     const $no = $('<button id = no> No </button>')
-    const $div = $('#delete_div')
-    $div.append($popup)
-    $div.append($yes)
-    $div.append($no)
+    const $form = $('#form')
+    $form.append($popup)
+    $form.append($yes)
+    $form.append($no)
 
 }
 

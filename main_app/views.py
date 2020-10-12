@@ -113,6 +113,11 @@ def post_edit(request, post_id):
     context = {'post': post, 'post_form': post_form}
     return render(request, 'post/edit.html', context)
 
+# delete
+def post_delete(request, post_id):
+    Post.objects.get(id=post_id).delete()
+    return redirect("home")
+
 # edit and update
 def profile_edit(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
