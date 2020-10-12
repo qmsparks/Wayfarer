@@ -36,6 +36,12 @@ body {
   font-weight: 700;
 }
 
+#btn:hover {
+    background-color: var(--highlight);
+    color: #333;
+    
+  }
+
 .cardbg {
   backdrop-filter: blur(6px);
 }

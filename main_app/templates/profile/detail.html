@@ -8,8 +8,9 @@
 
             <!--SECTION Profile Card -->
             <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                
                 <div class="card-body">
-                    <h1 class="card-titile  profile-body">
+                    <h1 class="card-titile profile-body">
                         Hi there, {{ user.profile.name }}!
                     </h1>
                     <p class="profile-body">
@@ -21,8 +22,8 @@
                 </div>
 
                 <!--SECTION  Edit Button w/in card -->
-                <div class="card-action profile-body">
-                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn btn-outline-secondary">
+                <div class="card-action" style="font-family: 'Bellota Text', cursive; font-weight: 700;">
+                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn btn-light btn-sm" style="background-color: #135952; color: white;">
                         Edit Account
                     </a>
                 </div>
