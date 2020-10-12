@@ -24,3 +24,11 @@ const remove = function(){
 }
 
 $delete.on("click", remove)
+
+$editButton = $(".btn btn-light btn-sm")
+
+const message = function(){
+    window.alert("Wrong Profile")
+}
+
+$editButton.on("click", message)
