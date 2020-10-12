@@ -31,11 +31,29 @@ body {
   font-weight: 700;
 }
 
+<<<<<<< HEAD
+.home-carousel-item {
+    width: auto;
+    height: auto;
+    max-height: 50vh;
+    display: block;
+}
+
+.home-wayfarer {
+    font-family: 'Arima Madurai', cursive;
+    color: #135952;
+    font-size: 50px;
+    background-color: #DCEAE4;
+    padding: 5px 40px 1px;
+    border-radius: 15px;
+}
+=======
 .profile-body {
   font-family: 'Arima Madurai', cursive;
   font-weight: 700;
 }
 
+>>>>>>> submain
 
 .cardbg {
   backdrop-filter: blur(6px);
