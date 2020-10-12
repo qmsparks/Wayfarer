@@ -11,7 +11,9 @@ from django.contrib import messages
 from .forms import Profile_Form, City_Form, Post_Form
 import copy
 # Create your views here.
-
+# Home view
+def home(request):
+    return render(request, 'home.html')
 
 #Register Form
 def register(request):
@@ -92,10 +94,6 @@ def profile_detail(request, profile_id):
     context = {'user': user}
     return render(request, 'profile/detail.html', context)
 
-# Home view
-def home(request):
-    
-    return render(request, 'home.html')
 
 @login_required
 def post_detail(request, post_id):
