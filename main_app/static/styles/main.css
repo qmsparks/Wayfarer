@@ -3,14 +3,6 @@ font-family: 'Bellota Text', cursive;
 font-family: 'Comfortaa', cursive;
 font-family: 'Sansita Swashed', cursive; */
 
-.bi::before {
-    display: inline-block;
-    content: "";
-    background-image: url("data:image/svg+xml,<svg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z' clip-rule='evenodd'/></svg>");
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Arima+Madurai:wght@100;200;300;400;500;700;800;900&family=Bellota+Text:wght@300;700&family=Comfortaa:wght@300;400&family=Sansita+Swashed:wght@500;600&display=swap");
 body {
     background-color: #e0eeec;
@@ -18,6 +10,23 @@ body {
 
 .navcss {
     background-color: #135952;
+    /* background image source and credit to: https://jooinn.com/snowy-mountain-2.html */
+    background-image: linear-gradient(0deg, #0e302ee5, #143a37ec), url("../assets/logo/snowy-mountain-1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.navbar {
+    position: relative;
+}
+
+navbar-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .navitext {
@@ -62,4 +71,44 @@ body {
 
 .cardbg {
     backdrop-filter: blur(6px);
+}
+
+.city-body {
+    background-image: linear-gradient(#EDFFE9, #ddfafa);
+    font-family: 'Arima Madurai', cursive;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0px 0px 15px 15px;
+}
+
+.city-nav-header {
+    background-image: linear-gradient(45deg, #f5e2c9, transparent);
+    padding: 7px 0px 0px 18px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.city-nav-body {
+    background-image: linear-gradient(360deg, #8EBEBB, transparent);
+    border-radius: 0px 0px 10px 10px;
+}
+
+.media-frame {
+    background-image: linear-gradient(#4aa39d, #68b4b4);
+    padding: 25px;
+    border-radius: 15px 15px 0px 0px;
+    color: white;
+}
+
+.city-name-buttons {
+    background-image: linear-gradient(45deg, #4aa39d, #FFB556);
+    border-radius: 15px;
+}
+
+.post-feature {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.img-post {
+    width: 50px;
 }
