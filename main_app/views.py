@@ -105,7 +105,7 @@ def post_detail(request, post_id):
 @login_required
 def post_edit(request, post_id):
     post = Post.objects.get(id=post_id)
-    if request.user.id == profile.user_id:
+    if request.user.id == post.profile.user_id:
         if request.method == 'POST':
             post_form = Post_Form(request.POST, instance=post)
             if post_form.is_valid():
@@ -115,7 +115,8 @@ def post_edit(request, post_id):
             post_form = Post_Form(instance=post)
         context = {'post': post, 'post_form': post_form}
         return render(request, 'post/edit.html', context)
-    # else:
+    else:
+        return HttpResponse("You are not Authorized to edit this post")
 
 # delete
 @login_required
