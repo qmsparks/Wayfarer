@@ -13,20 +13,62 @@
                         Title: {{ post.title }}
                     </h1>
                     <p>Author: 
-                        <br>
+                        <br />
                         {{post.author}} 
-                    </p>
-                    <p>Content: 
-                        <br>
-                        {{ post.content }} 
                     </p>
 
                     <!--SECTION Post Edit Button-->
                     <div class="card-action">
-                        <a href="{% url 'post_edit' post.id %}" class="btn btn-light btn-sm" style="background-color: #135952; color: #E0EEEC;">
-                            Edit Post
-                        </a>
+                        <a href="{% url 'post_edit' post.id %}">
+                            <button type="button" class="bttn-pill bttn-sm bttn-warning">
+                                Edit Post
+                            </button>  
+                         </a>
                     </div>
+                    <br />
+
+                    <p>Content: 
+                        <br />
+                        {{ post.content }} 
+                    </p>
+
+                    
+                    <br /><br />
+
+                    <!-- SECTION Delete Button trigger modal -->
+                    <button type="button" class="bttn-pill bttn-sm bttn-danger" data-toggle="modal" data-target="#deleteModal">
+                        Delete Post
+                    </button>
+
+                      <!-- SECTION Delete Modal -->
+                      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">
+                                          Delete
+                                      </h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">
+                                              &times;
+                                          </span>
+                                      </button>
+                                  </div>
+                                  <form action="{% url 'post_delete' post.id %}" method="POST">
+                                      <div class="modal-body">
+                                          {% csrf_token %} 
+                                          Are you sure you want to delete {{post.title}}?
+                                      </div>
+                                      <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                              Cancel
+                                          </button>
+                                          <input type="submit" class="btn btn-primary" value="Delete Post">
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
 
                 </div>
             </div>
@@ -35,31 +77,5 @@
     </div>
 </div>
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
-    Delete
-  </button>
-  <!-- Modal -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <form action="{% url 'post_delete' post.id %}" method="POST">
-        <div class="modal-body">
-            {% csrf_token %}
-          Are you sure you want to delete {{post.title}}?
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <input type="submit" class="btn btn-primary" value="Delete Post">
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
+
 {% endblock %}
