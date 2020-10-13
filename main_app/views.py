@@ -121,7 +121,8 @@ def post_edit(request, post_id):
 # delete
 @login_required
 def post_delete(request, post_id):
-    if request.user.id == profile.user_id:
+    post = Post.objects.get(id=post_id)
+    if request.user.id == post.profile.user_id:
         post = Post.objects.get(id=post_id)
         city = post.city_id
         Post.objects.get(id=post_id).delete()
