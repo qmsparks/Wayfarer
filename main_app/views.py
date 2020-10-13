@@ -121,12 +121,14 @@ def post_edit(request, post_id):
 # delete
 @login_required
 def post_delete(request, post_id):
-    if request.user.id == profile.user_id:
+    post = Post.objects.get(id=post_id)
+    if request.user.id == post.profile.user_id:
         post = Post.objects.get(id=post_id)
         city = post.city_id
         Post.objects.get(id=post_id).delete()
         return redirect('city_detail', city_id = city)
-    # else:
+    else:
+        return HttpResponse("You are not Authorized to delete this post")
 
 
 # edit and update
