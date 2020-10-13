@@ -3,7 +3,7 @@
 {% block content %}
 <div class="row city-body" style="padding: 50px;">
   <!-- SECTION Sidebar -->
-  <div class="col-md-4 city-nav-body">
+  <div class="col-md-5 city-nav-body">
     <!-- title -->
     <div class="row city-nav-header">
       <h1 style="color: #416A4B;">Cities</h1>
@@ -15,7 +15,7 @@
           <img class="mr-3 box-shadow" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
           <div class="media-body city-name-buttons">
             <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline" style="width:100%">{{city.city_name}} 
-            <i class="fa fa-chevron-right"></i>
+            <i class="fa fa-caret-right"></i>
             </button></a>
           </div>
         </div>        
@@ -24,7 +24,7 @@
 
   </div>
   <!-- SECTION Main content (Ciy description and User posts) -->
-  <div class="col-md-8">
+  <div class="col-md-7">
     <!-- City description-->   
     <div class="container">
       <div class="row media-frame">
@@ -98,15 +98,15 @@
         
         <p>
           <label for="title">Post title: </label>
-          <input type="text" class="form-control" name="title"  maxlength="100" minlength="2" placeholder="Enter the title post (required)" required>
+          <input type="text" class="form-control" name="title"  maxlength="200" minlength="2" placeholder="Enter the title post (required). Maximum 200 characters." required>
         </p>
         <p>
           <label for="author">Author's name: </label>
-          <input type="text" class="form-control" name="author"  maxlength="150" minlength="2" placeholder="Enter the author's post (required)" required>
+          <input type="text" class="form-control" name="author"  maxlength="100" minlength="2" placeholder="Enter the author's post (required). Maximum 100 characters." required>
         </p>
         <p>
           <label for="content">Content: </label>
-          <textarea type="text" class="form-control" name="content"  maxlength="50" minlength="2" placeholder="Post your content here (required)" rows="3" required></textarea>
+          <textarea type="text" class="form-control" name="content"  maxlength="250" minlength="2" placeholder="Post your content here (required). Maximum 250 characters." rows="3" required></textarea>
         </p>
       </div>
       <div class="modal-footer" >
