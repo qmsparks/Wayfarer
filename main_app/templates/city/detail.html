@@ -12,7 +12,7 @@
     {% for city in cities %}
       <div class="row" style="margin: 15px 0px 15px 0px;">
         <div class="media">
-          <img class="mr-3" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
+          <img class="mr-3 box-shadow" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
           <div class="media-body city-name-buttons">
             <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline" style="width:100%">{{city.city_name}}</button></a>
           </div>
@@ -38,7 +38,7 @@
     </div>
     <!-- Post features -->
     <div class="container">  
-      <div class="row" style="background-color: #E0EEEC; padding: 5px 0px 0px 10px;">
+      <div class="row" style="background-color: #E0EEEC; padding: 5px 0px 0px 10px; background-image: linear-gradient(-45deg, #4AA394, transparent);">
         <div class="col">
           <h2 style="color: #135952;">Posts</h2>
         </div>
@@ -57,7 +57,7 @@
           <ul class="list-unstyled">
             {% for post in city.post_set.all %}
               <a href="/post/{{ post.id }}" style="text-decoration: none; color: white;">
-                <li class="media media-content">
+                <li class="media bttn-float media-content ">
                   <img class="mr-3 img-post" src="../../static/assets/photos/default-profile-photo.png" alt="Generic placeholder image">
                   <div class="media-body">
                     <h4 class="mt-0 mb-1">"{{post.title}}"</h4>

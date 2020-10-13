@@ -12,7 +12,6 @@ body {
     background-color: #135952;
     /* background image source and credit to: https://jooinn.com/snowy-mountain-2.html */
     background-image: linear-gradient(0deg, #0e302ee5, #143a37ec), url("../assets/logo/snowy-mountain-1.jpg");
-    backdrop-filter: blur(6px);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -97,13 +96,6 @@ navbar-image {
     padding: 25px;
     border-radius: 15px 15px 0px 0px;
     color: white;
-}
-
-.media-content {
-    margin: 5px 0px;
-    padding: 15px;
-    background-image: linear-gradient(#68b4b4, #4aa39d);
-    border-radius: 5px;
 }
 
 .city-name-buttons {
