@@ -37,8 +37,9 @@ def register(request):
                 return render(request, "home.html", context)
             else: #check email exists in DB
                 if User.objects.filter(email=email_form).exists():
-                    context = {'error': 'That email already exists.'}
-                    return HttpResponse("Email already Exists")
+                    error_message = 'Email already exist'
+                    context = {'error': error_message}
+                    return render (request, "home.html", context)
                 else: #if no duplicated usernme and email, store info in DB
                     user = User.objects.create_user(
                         username=username_form,
@@ -57,7 +58,7 @@ def register(request):
                     profile.save()
                     # If registration is successful, following line will print
                     print('Registration is successful. Data is saved.')
-                    return redirect('/') #return to homepage after registration
+                    return redirect('profile_detail', user.id) #return to homepage after registration
         else: #if passwords don't match
             context = {'error': 'Passwords do not match.'} 
             return render(request, 'home.html', context)
@@ -152,7 +153,7 @@ def profile_edit(request, profile_id):
 #SECTION City
 def city_detail(request, city_id):
     city = City.objects.get(id =city_id)
-    cities = City.objects.all();
+    cities = City.objects.all()
     post_form = Post_Form()
     context = {
         'city': city,
