@@ -10,6 +10,12 @@ body {
 
 .navcss {
     background-color: #135952;
+    /* background image source and credit to: https://jooinn.com/snowy-mountain-2.html */
+    background-image: linear-gradient(0deg, #0e302ee5, #143a37ec), url("../assets/logo/snowy-mountain-1.jpg");
+    backdrop-filter: blur(6px);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .navbar {
@@ -69,20 +75,48 @@ navbar-image {
 }
 
 .city-body {
-    background-image: linear-gradient(#EDFFE9, #ECF1F0);
+    background-image: linear-gradient(#EDFFE9, #ddfafa);
     font-family: 'Arima Madurai', cursive;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 0px 0px 15px 15px;
 }
 
+.city-nav-header {
+    background-image: linear-gradient(45deg, #f5e2c9, transparent);
+    padding: 7px 0px 0px 18px;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.city-nav-body {
+    background-image: linear-gradient(360deg, #8EBEBB, transparent);
+    border-radius: 0px 0px 10px 10px;
+}
+
 .media-frame {
-    background-color: #135952;
+    background-image: linear-gradient(#4aa39d, #68b4b4);
     padding: 25px;
     border-radius: 15px 15px 0px 0px;
     color: white;
 }
 
+.media-content {
+    margin: 5px 0px;
+    padding: 15px;
+    background-image: linear-gradient(#68b4b4, #4aa39d);
+    border-radius: 5px;
+}
+
 .city-name-buttons {
-    background-color: #FFB556;
+    background-image: linear-gradient(45deg, #4aa39d, #FFB556);
     border-radius: 15px;
+}
+
+.post-feature {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.img-post {
+    width: 50px;
 }

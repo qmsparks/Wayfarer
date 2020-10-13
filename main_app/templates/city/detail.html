@@ -2,10 +2,10 @@
 
 {% block content %}
 <div class="row city-body" style="padding: 50px;">
-<!-- SECTION Sidebar -->
-  <div class="col-md-4">
+  <!-- SECTION Sidebar -->
+  <div class="col-md-4 city-nav-body">
     <!-- title -->
-    <div class="row">
+    <div class="row city-nav-header">
       <h1 style="color: #416A4B;">Cities</h1>
     </div>
     <!-- city -->
@@ -14,50 +14,64 @@
         <div class="media">
           <img class="mr-3" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
           <div class="media-body city-name-buttons">
-            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline">{{city.city_name}}</button></a>
+            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline" style="width:100%">{{city.city_name}}</button></a>
           </div>
         </div>        
       </div>
     {% endfor %}
 
   </div>
-<!-- SECTION Main content (Ciy description and User posts) -->
+  <!-- SECTION Main content (Ciy description and User posts) -->
   <div class="col-md-7">
-      <!-- City description-->   
+    <!-- City description-->   
+    <div class="container">
       <div class="row media-frame">
           <div class="media">
             <script src="../../static/scripts/app.js"></script>
-            <img class="mr-3" src="{{city.image_link}}"  alt="city thumbnail" style="width: 200px;">
+            <img class="mr-3" src="{{city.image_link}}"  alt="city thumbnail" style="width: 200px; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
             <div class="media-body">
               <h2 class="mt-0">City: {{city.city_name}}</h2>
               Country: {{city.country_name}}
             </div>
           </div> 
       </div>
-      <!-- User posts title and Icon -->
-      <div class="row" style="background-color: #EDFFE9;">
+    </div>
+    <!-- Post features -->
+    <div class="container">  
+      <div class="row" style="background-color: #E0EEEC; padding: 5px 0px 0px 10px;">
         <div class="col">
-        <button type="button" class="bttn-pill bttn-sm bttn-warning float-right" data-toggle="modal" data-target="#AddNewCity">
-          Add <i class="fa fa-plus-circle"></i>
-        </button>
+          <h2 style="color: #135952;">Posts</h2>
+        </div>
+        <div class="col">
+          <button type="button" class="bttn-pill bttn-sm bttn-warning float-right" data-toggle="modal" data-target="#AddNewCity">
+            Add <i class="fa fa-plus-circle"></i>
+          </button>
         </div>
       </div>
-      <!-- User posts -->
-      <div class="row" style="background-color: #2C8C85;">
-        <table class="striped">
-          
-            <tr><th>Posts</th><th></th></tr>
-          </thead>
-          <tbody>
+    </div>
+    <!-- User posts -->
+    <div class="row" >
+      <div class="container">
+      <div class="row">
+        <div class="col">
+          <ul class="list-unstyled">
             {% for post in city.post_set.all %}
-              <tr>
-                <td><a href="/post/{{ post.id }}">{{post.title}}</a></td>
-
-              </tr>
+              <a href="/post/{{ post.id }}" style="text-decoration: none; color: white;">
+                <li class="media media-content">
+                  <img class="mr-3 img-post" src="../../static/assets/photos/default-profile-photo.png" alt="Generic placeholder image">
+                  <div class="media-body">
+                    <h4 class="mt-0 mb-1">"{{post.title}}"</h4>
+                    <h6 class="mt-0 mb-1">By: {{post.author}}. On: {{post.date}}</h6>
+                    {{post.content}}
+                  </div>
+                </li>
+              </a>
             {% endfor %}
-          </tbody>
-        </table>
-      <div>
+          </ul>
+        </div>
+      </div>
+      </div>
+    <div>
   </div>
 </div>
 
