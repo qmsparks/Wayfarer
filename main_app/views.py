@@ -150,7 +150,7 @@ def profile_edit(request, profile_id):
         return redirect('home')
 
 
-#SECTION City
+
 def city_detail(request, city_id):
     city = City.objects.get(id =city_id)
     cities = City.objects.all()
