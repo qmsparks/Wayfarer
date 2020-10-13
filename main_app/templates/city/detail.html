@@ -1,20 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row">
+<div class="row city-body" style="padding: 50px;">
 <!-- SECTION Sidebar -->
   <div class="col-md-4">
     <!-- title -->
     <div class="row">
-      <h1>Cities</h1>
+      <h1 style="color: #416A4B;">Cities</h1>
     </div>
     <!-- city -->
     {% for city in cities %}
-      <div class="row">
+      <div class="row" style="margin: 15px 0px 15px 0px;">
         <div class="media">
-          <img class="mr-3" src="{{city.image_link}}" style="width:100px;" alt="city thumbnail">
-          <div class="media-body">
-            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-slant bttn-lg bttn-warning bttn-no-outline">{{city.city_name}}</button></a>
+          <img class="mr-3" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
+          <div class="media-body city-name-buttons">
+            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline">{{city.city_name}}</button></a>
           </div>
         </div>        
       </div>
@@ -24,32 +24,35 @@
 <!-- SECTION Main content (Ciy description and User posts) -->
   <div class="col-md-7">
       <!-- City description-->   
-      <div class="row">
-        <div class="media">
-          <script src="../../static/scripts/app.js"></script>
-          <img class="mr-3" src="{{city.image_link}}"  alt="city thumbnail" style="width: 200px;">
-          <div class="media-body">
-            <h2 class="mt-0">{{city.city_name}}</h2>
-          </div>
-        </div>
+      <div class="row media-frame">
+          <div class="media">
+            <script src="../../static/scripts/app.js"></script>
+            <img class="mr-3" src="{{city.image_link}}"  alt="city thumbnail" style="width: 200px;">
+            <div class="media-body">
+              <h2 class="mt-0">City: {{city.city_name}}</h2>
+              Country: {{city.country_name}}
+            </div>
+          </div> 
       </div>
-      <!-- User posts title -->
-      <div class="row">
+      <!-- User posts title and Icon -->
+      <div class="row" style="background-color: #EDFFE9;">
+        <div class="col">
         <button type="button" class="bttn-pill bttn-sm bttn-warning float-right" data-toggle="modal" data-target="#AddNewCity">
           Add <i class="fa fa-plus-circle"></i>
         </button>
+        </div>
       </div>
       <!-- User posts -->
-      <div class="row">
-      
+      <div class="row" style="background-color: #2C8C85;">
         <table class="striped">
-          <thead>
-            <tr><th>Reviews</th><th></th></tr>
+          
+            <tr><th>Posts</th><th></th></tr>
           </thead>
           <tbody>
             {% for post in city.post_set.all %}
               <tr>
                 <td><a href="/post/{{ post.id }}">{{post.title}}</a></td>
+
               </tr>
             {% endfor %}
           </tbody>

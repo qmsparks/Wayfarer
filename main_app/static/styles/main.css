@@ -12,6 +12,18 @@ body {
     background-color: #135952;
 }
 
+.navbar {
+    position: relative;
+}
+
+navbar-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
 .navitext {
     color: red;
 }
@@ -54,4 +66,23 @@ body {
 
 .cardbg {
     backdrop-filter: blur(6px);
+}
+
+.city-body {
+    background-image: linear-gradient(#EDFFE9, #ECF1F0);
+    font-family: 'Arima Madurai', cursive;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 0px 0px 15px 15px;
+}
+
+.media-frame {
+    background-color: #135952;
+    padding: 25px;
+    border-radius: 15px 15px 0px 0px;
+    color: white;
+}
+
+.city-name-buttons {
+    background-color: #FFB556;
+    border-radius: 15px;
 }

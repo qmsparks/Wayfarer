@@ -16,6 +16,7 @@
 <body>
     
 <nav class="navbar navbar-expand-sm navbar-light navcss">
+    <img src="{% static 'assets/logo/company-logo.svg' %}" alt="Company Logo" style="width: 60px;">
     <a class="navbar-brand" href="/" style="color: #E0EEEC; font-family: 'Arima Madurai', cursive; font-size: 35px">Wayfarer</a>
   {% if user.is_authenticated %}
       <ul class="navbar-nav ml-2">
