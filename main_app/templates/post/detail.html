@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="color: #135952;">
+
+            <!--SECTION Post Card -->
+            <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                <div class="card-body profile-body">
+                    <h1 class="card-title">
+                        Title: {{ post.title }}
+                    </h1>
+                    <p>Author: 
+                        {{post.author}} 
+                    </p>
+                    <p>Content: 
+                        <br />
+                        {{ post.content }} 
+                    </p>
+
+                    <div class="container">
+                        <div class="row">
+                            <!--SECTION Post Edit Button-->
+                            <div class="col-md-2 text-left">
+                                <div class="card-action">
+                                    <a href="{% url 'post_edit' post.id %}">
+                                        <button type="button" class="bttn-pill bttn-sm bttn-warning">
+                                            Edit Post
+                                        </button>  
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- SECTION Delete Button to trigger modal -->
+                            <div class="col-md-10 text-right"> 
+                                <button type="button" class="bttn-pill bttn-sm btn-dark" data-toggle="modal" data-target="#deleteModal">
+                                    Delete Post
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION Delete Modal -->
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">
+                                        Delete
+                                    </h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">
+                                            &times;
+                                        </span>
+                                    </button>
+                                </div>
+                                <form action="{% url 'post_delete' post.id %}" method="POST">
+                                    <div class="modal-body">
+                                        {% csrf_token %} 
+                                        Are you sure you want to delete {{post.title}}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <input type="submit" class="btn btn-primary" value="Delete Post">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

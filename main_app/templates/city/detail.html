@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row city-body" style="padding: 50px;">
+  <!-- SECTION Sidebar -->
+  <div class="col-md-5 city-nav-body">
+    <!-- title -->
+    <div class="row city-nav-header">
+      <h1 style="color: #416A4B;">Cities</h1>
+    </div>
+    <!-- city -->
+    {% for city in cities %}
+      <div class="row" style="margin: 15px 0px 15px 0px;">
+        <div class="media">
+          <img class="mr-3 box-shadow" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
+          <div class="media-body city-name-buttons">
+            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline" style="width:100%">{{city.city_name}} 
+            <i class="fa fa-caret-right"></i>
+            </button></a>
+          </div>
+        </div>        
+      </div>
+    {% endfor %}
+
+  </div>
+  <!-- SECTION Main content (Ciy description and User posts) -->
+  <div class="col-md-7">
+    <!-- City description-->   
+    <div class="container">
+      <div class="row media-frame">
+          <div class="media">
+            <script src="../../static/scripts/app.js"></script>
+            <img class="mr-3" src="{{city.image_link}}"  alt="city thumbnail" style="width: 200px; border-radius: 5px; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+            <div class="media-body">
+              <h2 class="mt-0">City: {{city.city_name}}</h2>
+              Country: {{city.country_name}}
+            </div>
+          </div> 
+      </div>
+    </div>
+    <!-- Post features -->
+    <div class="container">  
+      <div class="row" style="background-color: #E0EEEC; padding: 5px 0px 0px 10px; background-image: linear-gradient(-45deg, #4AA394, transparent);">
+        <div class="col">
+          <h2 style="color: #135952;">Posts</h2>
+        </div>
+        <div class="col">
+          <button type="button" class="bttn-pill bttn-sm bttn-warning float-right" data-toggle="modal" data-target="#AddNewCity">
+            Add <i class="fa fa-plus-circle"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- User posts -->
+    <div class="row" >
+      <div class="container">
+      <div class="row">
+        <div class="col">
+          <ul class="list-unstyled">
+            {% for post in city.post_set.all %}
+              <a href="/post/{{ post.id }}" style="text-decoration: none; color: white;">
+                <li class="media bttn-float media-content ">
+                  <img class="mr-3 img-post" src="../../static/assets/photos/default-profile-photo.png" alt="Generic placeholder image">
+                  <div class="media-body">
+                    <h4 class="mt-0 mb-1">"{{post.title}}"</h4>
+                    <h6 class="mt-0 mb-1">By: {{post.author}}. On: {{post.date}}</h6>
+                    {{post.content}}
+                  </div>
+                </li>
+              </a>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      </div>
+    <div>
+  </div>
+</div>
+
+<!-- SECTION Button trigger modal -->
+{% if formInvalid %}
+  <div class="alert alert-danger" role="alert">{{formInvalid}}</div>
+{% endif %}
+
+<!-- SECTION Modal-->
+<div class="modal fade" id="AddNewCity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add New Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <form action="{% url 'add_post' city.id %}" method="POST">
+      <div class="modal-body">
+        {% csrf_token %}
+        
+        <p>
+          <label for="title">Post title: </label>
+          <input type="text" class="form-control" name="title"  maxlength="200" minlength="2" placeholder="Enter the title post (required). Maximum 200 characters." required>
+        </p>
+        <p>
+          <label for="author">Author's name: </label>
+          <input type="text" class="form-control" name="author"  maxlength="100" minlength="2" placeholder="Enter the author's post (required). Maximum 100 characters." required>
+        </p>
+        <p>
+          <label for="content">Content: </label>
+          <textarea type="text" class="form-control" name="content"  maxlength="250" minlength="2" placeholder="Post your content here (required). Maximum 250 characters." rows="3" required></textarea>
+        </p>
+      </div>
+      <div class="modal-footer" >
+        <button type="button" class="bttn-fill bttn-md bttn-danger bttn-no-outline button-spacing" data-dismiss="modal">Close</button>
+        <button type="submit" class="bttn-fill bttn-md bttn-warning bttn-no-outline button-spacing">Add Post</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

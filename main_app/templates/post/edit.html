@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="color: #135952;">
+
+            <!--SECTION Edit Post Card -->
+            <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                <div class="card-body profile-body">
+                    <h1>
+                        Edit: {{ post.title }}
+                    </h1>
+
+                    <!--SECTION Post Edit Button-->
+                    <form action="{% url 'post_edit' post.id %}" method="POST">
+                        {% csrf_token %}
+                        {{ post_form.as_p }}
+                        <button type="button submit" class="bttn-pill bttn-sm bttn-warning">
+                            Update Post
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

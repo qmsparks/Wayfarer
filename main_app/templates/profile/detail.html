@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="color: #135952;">
+
+            <!--SECTION Profile Card -->
+            <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                
+                <div class="card-body profile-body">
+                    <h1 class="card-title">
+                        Hi there, {{ user.profile.name }}!
+                    </h1>
+                    <p class="">
+                        You are in: <br>{{user.profile.current_city}}
+                    </p>
+                    <p class="">
+                        You joined Wayferer on: <br>{{ user.profile.date }} 
+                    </p>
+                </div>
+
+                <!--SECTION  Edit Button w/in card -->
+                <div class="card-action" style="font-family: 'Arima Madurai', cursive; font-weight: 700;">
+                    <a href="{% url 'profile_edit' user.profile.id %}">
+                        <button type="button" class="bttn-pill bttn-sm bttn-warning">
+                            Edit Account
+                        </button>
+                    </a>
+                </div>
+
+                <!--SECTION  Posts w/in card --> 
+                <tbody>
+                    <br>
+                    <h4 style="font-family: 'Arima Madurai', cursive;""> 
+                        Your Posts:
+                    </h4>
+                    {% for post in user.profile.post_set.all %}
+                        <tr>
+                            <a href="/post/{{ post.id }}" class="profile-body btn-light">
+                                <td>{{post.title}}</td>
+                            </a>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

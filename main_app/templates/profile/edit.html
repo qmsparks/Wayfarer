@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col" style="color: #135952;">
+
+            <!--SECTION Update Card -->
+            <div class="card shadow-lg p-3 mb-5 rounded" style="width: 50rem;">
+                <div class="card-body">
+                    <h1 class="card-title profile-body">
+                        Edit Your Account.
+                    </h1>
+                    <br>
+
+                    <!--SECTION Update Form w/in card -->
+                    <form action="{% url 'profile_edit' profile.id %}" method="POST" class="profile-body">
+                        {% csrf_token %}
+                        {{ profile_form.as_p }}
+
+                        <!--SECTION Update btn w/in card -->
+                        <div class="card-action" style="font-family: 'Arima Madurai', cursive; font-weight: 700;">
+                            <button type="button submit" class="bttn-pill bttn-sm bttn-warning">
+                                Update
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+
