@@ -81,9 +81,14 @@ navbar-image {
 }
 
 .city-nav-header {
-    background-image: linear-gradient(45deg, #f5e2c9, transparent);
+    background-image: linear-gradient(45deg, #f5e2c95d, transparent);
     padding: 7px 0px 0px 18px;
+    background-image: linear-gradient(#68b4b4, #4aa39d);
+    border: solid 2px #4f8881;
     border-radius: 10px 10px 0px 0px;
+    background: -webkit-linear-gradient(#4b8585, #357773);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .city-nav-body {
