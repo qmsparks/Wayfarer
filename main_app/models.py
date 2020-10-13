@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from datetime import datetime
+from django.core.validators import MinLengthValidator
+
 # Create your models here.
 
 
@@ -25,9 +27,9 @@ class Profile(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=100)
+    title = models.CharField(max_length=200, validators=[MinLengthValidator(1)])
     author = models.CharField(max_length=100)
-    content = models.TextField(max_length=250)
+    content = models.TextField(max_length=250, validators=[MinLengthValidator(4)])
     date = models.DateField('created date', default= datetime.now)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     city = models.ForeignKey(City, on_delete=models.CASCADE)
