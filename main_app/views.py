@@ -18,7 +18,7 @@ def home(request):
 #Register Form
 def register(request):
     #from django-auth WC-SEI-817
-
+    error_message = ''
     
     #Logic that handles data from request.method "POST"
     if request.method == "POST":
@@ -32,12 +32,14 @@ def register(request):
         if password == password2:
             #check if username exists in db
             if User.objects.filter(username=username_form).exists():
-                context = {'error': 'Username already existed.'}
-                return render(request, 'register.html', context) 
+                error_message = 'Username already existed.'
+                context = {'error': error_message}
+                return render(request, "home.html", context)
             else: #check email exists in DB
                 if User.objects.filter(email=email_form).exists():
-                    context = {'error': 'That email already exists.'}
-                    return render(request, 'register.html', context)
+                    error_message = 'Email already exist'
+                    context = {'error': error_message}
+                    return render (request, "home.html", context)
                 else: #if no duplicated usernme and email, store info in DB
                     user = User.objects.create_user(
                         username=username_form,
@@ -104,35 +106,45 @@ def post_detail(request, post_id):
 @login_required
 def post_edit(request, post_id):
     post = Post.objects.get(id=post_id)
-    if request.method == 'POST':
-        post_form = Post_Form(request.POST, instance=post)
-        if post_form.is_valid():
-            post_form.save()
-            return redirect('post_detail', post_id=post_id)
-    else:
-        post_form = Post_Form(instance=post)
-    context = {'post': post, 'post_form': post_form}
-    return render(request, 'post/edit.html', context)
+    if request.user.id == profile.user_id:
+        if request.method == 'POST':
+            post_form = Post_Form(request.POST, instance=post)
+            if post_form.is_valid():
+                post_form.save()
+                return redirect('post_detail', post_id=post_id)
+        else:
+            post_form = Post_Form(instance=post)
+        context = {'post': post, 'post_form': post_form}
+        return render(request, 'post/edit.html', context)
+    # else:
 
 # delete
+@login_required
 def post_delete(request, post_id):
-    post = Post.objects.get(id=post_id)
-    city = post.city_id
-    Post.objects.get(id=post_id).delete()
-    return redirect('city_detail', city_id = city)
+    if request.user.id == profile.user_id:
+        post = Post.objects.get(id=post_id)
+        city = post.city_id
+        Post.objects.get(id=post_id).delete()
+        return redirect('city_detail', city_id = city)
+    # else:
+
 
 # edit and update
+@login_required
 def profile_edit(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
-    if request.method == 'POST':
-        profile_form = Profile_Form(request.POST, instance=profile)
-        if profile_form.is_valid():
-            profile_form.save()
-            return redirect('profile_detail', profile_id=profile.user.id)
+    if request.user.id == profile.user_id:
+        if request.method == 'POST':
+            profile_form = Profile_Form(request.POST, instance=profile)
+            if profile_form.is_valid():
+                profile_form.save()
+                return redirect('profile_detail', profile_id=profile.user.id)
+        else:
+            profile_form = Profile_Form(instance=profile)
+        context = {'profile': profile, 'profile_form': profile_form}
+        return render(request, 'profile/edit.html', context)
     else:
-        profile_form = Profile_Form(instance=profile)
-    context = {'profile': profile, 'profile_form': profile_form}
-    return render(request, 'profile/edit.html', context)
+        return redirect('home')
 
 
 #SECTION City
@@ -147,7 +159,7 @@ def city_detail(request, city_id):
     }
     return render(request, 'city/detail.html', context)
 
-
+@login_required
 def city_edit(request, city_id):
     city = City.objects.get(id=city_id)
     if request.method == 'POST':
