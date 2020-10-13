@@ -65,10 +65,8 @@
                           <span aria-hidden="true">&times;</span>
                           </button>
                       </div>
-                      {% if error %}
-                        <div class="alert alert-danger" role="alert">{{error}}</div>
-                        <script>alert("{{error}}")</script>
-                      {% endif %}
+                      
+                      
                       <form method="POST" action={% url 'register'%}>
                           {% csrf_token %}
                           <div class="modal-body">
@@ -130,10 +128,8 @@
                           <span aria-hidden="true">&times;</span>
                           </button>
                       </div>
-                      {% if error %}
-                        <div class="alert alert-danger" role="alert">{{error}}</div>
-                        <script>alert("{{error}}")</script>
-                      {% endif %}
+                      
+                      
                       <form method="POST" action="{%url 'login' %}">
                           {% csrf_token %}
                           <div class="modal-body">
