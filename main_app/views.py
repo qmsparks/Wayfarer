@@ -106,7 +106,7 @@ def post_detail(request, post_id):
 @login_required
 def post_edit(request, post_id):
     post = Post.objects.get(id=post_id)
-    if request.user.id == profile.user_id:
+    if request.user.id == post.profile.user_id:
         if request.method == 'POST':
             post_form = Post_Form(request.POST, instance=post)
             if post_form.is_valid():

@@ -70,7 +70,7 @@
                       </div>
                       {% if error %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
-                        <script>alert("{{error}}")</script>
+                        
                       {% endif %}
                       <form method="POST" action={% url 'register'%}>
                           {% csrf_token %}
@@ -135,7 +135,7 @@
                       </div>
                       {% if error %}
                         <div class="alert alert-danger" role="alert">{{error}}</div>
-                        <script>alert("{{error}}")</script>
+                        
                       {% endif %}
                       <form method="POST" action="{%url 'login' %}">
                           {% csrf_token %}
@@ -170,10 +170,17 @@
         {% endblock %}
     </div>
 
-</body>
+
 <script type="text/javascript">
-    $(document).ready(function(){
+ if(window.location.pathname === "/register/"){
+   console.log(window.location.pathname)
+    $(window).on('load', function(){
         $("#signupModal").modal("show");
     });
+ } 
+
+
+
 </script>
+</body>
 </html>
