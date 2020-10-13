@@ -43,7 +43,9 @@
           {% block modal %}
           {% if user.is_authenticated %}
           <li class="nav-item active">
-            <p class="nav-link" style="color: #E0EEEC;">Welcome, {{user.first_name}}</p>
+            <a class="nav-link" href="/profile/{{user.id}}/">
+            <p class="nav-link bttn-minimal bttn-md bttn-danger bttn-no-outline" style="color: #E0EEEC; bottom: 7px;">Welcome, {{user.first_name}}</p>
+            </a>
           </li>
           <li class="nav-item">
             <a href="{% url 'logout' %}" ><button type="submit" class="bttn-unite bttn-md bttn-warning bttn-no-outline" >Log Out</button></a>
@@ -112,9 +114,9 @@
                               </p>
 
                               <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="bttn-fill bttn-md bttn-danger bttn-no-outline button-spacing" data-dismiss="modal">Close</button>
                                   
-                                  <input type="submit" class="btn btn-primary" value="Sign Up">
+                                  <button type="submit" class="bttn-fill bttn-md bttn-warning bttn-no-outline button-spacing">Sign up</button
                                   <input type="hidden" name="next" value="{{ next }}">
                               </div>
                           </div>
@@ -149,9 +151,9 @@
                                 <input type="password" name="password" class="form-control" maxlength="25" minlength="4" required>
                               </p>
                               <div class="modal-footer">
-                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="bttn-fill bttn-md bttn-danger bttn-no-outline button-spacing" data-dismiss="modal">Close</button>
                                   
-                                  <input type="submit" class="btn btn-primary" value="Login">
+                                  <button type="submit" class="bttn-fill bttn-md bttn-warning bttn-no-outline button-spacing">Login</button>
                                   <input type="hidden" name="next" value="{{ next }}">
                               </div>
                           </div>

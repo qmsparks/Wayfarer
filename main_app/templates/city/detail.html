@@ -14,7 +14,9 @@
         <div class="media">
           <img class="mr-3 box-shadow" src="{{city.image_link}}" style="width:150px; border-radius: 5px;" alt="city thumbnail">
           <div class="media-body city-name-buttons">
-            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline" style="width:100%">{{city.city_name}}</button></a>
+            <a href="{% url 'city_detail' city.id%}"><button class="mt-0 bttn-stretch bttn-lg bttn-default bttn-no-outline" style="width:100%">{{city.city_name}} 
+            <i class="fa fa-chevron-right"></i>
+            </button></a>
           </div>
         </div>        
       </div>
@@ -75,12 +77,10 @@
   </div>
 </div>
 
-<!-- Button trigger modal -->
-
+<!-- SECTION Button trigger modal -->
 {% if formInvalid %}
   <div class="alert alert-danger" role="alert">{{formInvalid}}</div>
 {% endif %}
-
 
 <!-- SECTION Modal-->
 <div class="modal fade" id="AddNewCity" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -95,11 +95,23 @@
         <form action="{% url 'add_post' city.id %}" method="POST">
       <div class="modal-body">
         {% csrf_token %}
-        {{post_form.as_p}}
+        
+        <p>
+          <label for="title">Post title: </label>
+          <input type="text" class="form-control" name="title"  maxlength="100" minlength="2" placeholder="Enter the title post (required)" required>
+        </p>
+        <p>
+          <label for="author">Author's name: </label>
+          <input type="text" class="form-control" name="author"  maxlength="150" minlength="2" placeholder="Enter the author's post (required)" required>
+        </p>
+        <p>
+          <label for="content">Content: </label>
+          <textarea type="text" class="form-control" name="content"  maxlength="50" minlength="2" placeholder="Post your content here (required)" rows="3" required></textarea>
+        </p>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <input type="submit" class="btn btn-primary" value="Add Post">
+      <div class="modal-footer" >
+        <button type="button" class="bttn-fill bttn-md bttn-danger bttn-no-outline button-spacing" data-dismiss="modal">Close</button>
+        <button type="submit" class="bttn-fill bttn-md bttn-warning bttn-no-outline button-spacing">Add Post</button>
       </div>
       </form>
     </div>
