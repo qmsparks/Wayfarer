@@ -23,8 +23,10 @@
 
                 <!--SECTION  Edit Button w/in card -->
                 <div class="card-action" style="font-family: 'Arima Madurai', cursive; font-weight: 700;">
-                    <a href="{% url 'profile_edit' user.profile.id %}" class="btn btn-light btn-sm" style="background-color: #135952; color: #E0EEEC;">
-                        Edit Account
+                    <a href="{% url 'profile_edit' user.profile.id %}">
+                        <button type="button" class="bttn-pill bttn-sm bttn-warning">
+                            Edit Account
+                        </button>
                     </a>
                 </div>
 

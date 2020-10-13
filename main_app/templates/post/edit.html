@@ -17,7 +17,9 @@
                     <form action="{% url 'post_edit' post.id %}" method="POST">
                         {% csrf_token %}
                         {{ post_form.as_p }}
-                        <input class="btn btn-light btn-sm editbutton" type="submit" value="Update {{post.title}}" style="background-color: #135952; color: #E0EEEC;">
+                        <button type="button submit" class="bttn-pill bttn-sm bttn-warning">
+                            Update Post
+                        </button>
                     </form>
 
                 </div>
