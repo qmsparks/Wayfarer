@@ -58,7 +58,7 @@ def register(request):
                     profile.save()
                     # If registration is successful, following line will print
                     print('Registration is successful. Data is saved.')
-                    return redirect('/') #return to homepage after registration
+                    return redirect('profile_detail', user.id) #return to homepage after registration
         else: #if passwords don't match
             context = {'error': 'Passwords do not match.'} 
             return render(request, 'home.html', context)
