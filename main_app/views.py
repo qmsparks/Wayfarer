@@ -21,6 +21,12 @@ def register(request):
     error_message = ''
     
     #Logic that handles data from request.method "POST"
+
+
+    # NOTE you can save all of this information into one form, save yourself some typing and some visual space in this function
+    # either import django's builtin UserCreationForm or extend it into something custom in forms.py and import that into views
+    # then form_name = UserCreationForm(request.POST)
+
     if request.method == "POST":
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
@@ -32,12 +38,12 @@ def register(request):
         if password == password2:
             #check if username exists in db
             if User.objects.filter(username=username_form).exists():
-                error_message = 'Username already existed.'
+                error_message = 'Username already exists.'
                 context = {'error': error_message}
                 return render(request, "home.html", context)
             else: #check email exists in DB
                 if User.objects.filter(email=email_form).exists():
-                    error_message = 'Email already exist'
+                    error_message = 'Email already exists.'
                     context = {'error': error_message}
                     return render (request, "home.html", context)
                 else: #if no duplicated usernme and email, store info in DB
@@ -58,7 +64,12 @@ def register(request):
                     profile.save()
                     # If registration is successful, following line will print
                     print('Registration is successful. Data is saved.')
-                    return redirect('/') #return to homepage after registration
+
+                    auth.login(request, user)
+
+                    # return redirect('/') #return to homepage after registration
+
+                    return redirect('profile_detail', profile_id=profile.id)
         else: #if passwords don't match
             context = {'error': 'Passwords do not match.'} 
             return render(request, 'home.html', context)
